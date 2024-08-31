@@ -1,0 +1,27 @@
+import random
+
+digits = '0123456789'
+lowercase_letters = 'abcdefghijklmnopqrstuvwxyz'
+uppercase_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+punctuation = '!#$%&*+-=?@^_'
+exception = 'il1Lo0O'
+chars = ''
+
+def generate_password(length, chars):
+    passw = ''
+    for i in range(length):
+        passw += random.choice(chars)
+    print(passw)
+
+
+count_passwords = int(input('Введи количество паролей для генерации:   '))
+length_password = int(input('Введи необходимую длину паролей:   '))
+if input('Включать ли цифры 0123456789?   ') == 'да': chars += digits
+if input('Включать ли прописные буквы ABCDEFGHIJKLMNOPQRSTUVWXYZ?   ') == 'да': chars += uppercase_letters
+if input('Включать ли строчные буквы abcdefghijklmnopqrstuvwxyz?   ') == 'да': chars += lowercase_letters
+if input('Включать ли символы !#$%&*+-=?@^_?   ') == 'да': chars += punctuation
+if input('Исключать ли неоднозначные символы il1Lo0O?   ') == 'да':
+    for c in exception:
+        chars = chars.replace(c, '')
+for _ in range(count_passwords):
+    generate_password(length_password, chars)
